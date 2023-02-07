@@ -1,0 +1,48 @@
+@import url("./base.css");
+
+.table-container {
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-track-color: red;
+    scrollbar-width: 2rem !important;
+    margin-top: 1rem;
+}
+
+.table-container::-webkit-scrollbar {
+    background: transparent;
+    width: 4px;
+    height: 0.7rem;
+    margin-top: -1rem;
+}
+.table-container::-webkit-scrollbar-thumb {
+    background: rgba(49, 49, 49, 0.349);
+    border-radius: 10px;
+}
+
+
+
+
+
+.my-table thead tr {
+    border-radius: 10px !important;
+    background-color: var(--clr-sec) !important;
+    border: none;
+    border-color: white;
+    color: white;
+}
+
+.my-table thead tr th {
+    font-weight: normal;
+    padding: 1rem;
+}
+
+.my-table thead tr th:first-of-type {
+    border-radius: 10px 0 0 0;
+}
+
+
+.my-table thead tr th:last-of-type {
+    border-radius: 0 10px 0 0;
+}
+
+@media screen and (max-width: 425px) {}

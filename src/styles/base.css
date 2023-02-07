@@ -1,0 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --bg-body: rgba(255, 255, 255);
+    --bg-nav: rgba(243, 243, 243, 0.336);
+
+    --clr-main: #ffd301;
+    --clr-main-hover: #ffdc2d;
+    --clr-sec: #252525;
+    --clr-sec-hover: #3d3d3d;
+    --clr-tert: #5bccf6;
+    
+    --text-main: #222;
+    --text-main-hover: rgb(94, 94, 94);
+
+    --text-sec: gray;
+}

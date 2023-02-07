@@ -1,0 +1,94 @@
+@import url("./base.css");
+
+
+
+/* ======  HEADINGS  ======= */
+.section-title {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+
+
+/* ======  OTHERS  ======= */
+.box {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin-top: 4vh;
+}
+
+.subtitle {
+    font-family: 'Raleway', sans-serif;
+    color: var(--text-sec);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+section {
+    margin: 3rem 0;
+}
+
+.flexed-container {
+    /* border: solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+    min-width: 30rem;
+}
+
+
+/* ======  BUTTON  ======= */
+.btn-container {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.button {
+    width: 100%;
+    border: none;
+    height: 2.6rem;
+    background-color: var(--clr-main);
+    border-radius: 20px;
+    width: 8rem;
+    transition: all 100ms linear;
+}
+
+.button:hover {
+    background-color: var(--clr-main-hover);
+}
+
+
+.edit-btn-container {
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-btn {
+    border: none;
+    background-color: transparent;
+    border-radius: 100%;
+    width: 2.6rem;
+    height: 2.6rem;
+    transition: all 100ms linear;
+}
+.edit-btn:hover {
+    background-color: rgba(128, 128, 128, 0.11);
+}
+
+.edit-icon {
+    pointer-events: none;
+}

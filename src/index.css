@@ -1,0 +1,19 @@
+@import url("./styles/base.css");
+@import url("./styles/utility.css");
+@import url("./styles/navbar.css");
+@import url("./styles/forms.css");
+@import url("./styles/adminDashboard.css");
+@import url("./styles/table.css");
+:root{
+    box-sizing: border-box;
+}
+
+body{
+    /* font-family: 'Maven Pro', sans-serif !important; */
+    font-family: 'Poppins', sans-serif !important;
+    /* font-family: 'Playfair Display', serif !important; */
+    /* border: solid; */
+    background-color: var(--bg-body) !important;
+    overflow-x: hidden;
+}
+
