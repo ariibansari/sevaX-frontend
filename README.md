@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Steps to local setup 
 
 ### 1 - clone the repo by running this command in terminal
-    git clone https://github.com/ariibansari/sevaX-server.git
+    git clone https://github.com/ariibansari/sevaX-frontend.git
 
 ### 2 - add the .env file in the main folder
     
