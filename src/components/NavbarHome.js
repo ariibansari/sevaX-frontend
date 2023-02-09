@@ -65,7 +65,17 @@ function NavbarHome() {
                   <NavLink to="/manage-needy">Manage Needy</NavLink>
                 </>
               }
-              <a onClick={logout} className='cursor-pointer'>Logout</a>
+              <Dropdown className='dropdown-link'>
+                <Dropdown.Toggle>
+                  {console.log(user)}
+                  <div className='profile-pic' style={{backgroundImage: `url(${user.profilePictureSrc ?`${process.env.REACT_APP_BASE_URL}${user.profilePictureSrc}` :'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'})`}}/>
+                  {/* <img src= className='profile-pic' /> */}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <NavLink className='dropdown-item' to="/profile">My Profile</NavLink>
+                  <a onClick={logout} className='dropdown-item cursor-pointer'>Logout</a>
+                </Dropdown.Menu>
+              </Dropdown>
             </>
           }
         </div>
@@ -97,6 +107,8 @@ function NavbarHome() {
                 <>
                   <NavLink to="/manage-donors" onClick={() => setIsMenuOpen(!isMenuOpen)}>Manage Donors</NavLink>
                   <NavLink to="/manage-needy" onClick={() => setIsMenuOpen(!isMenuOpen)}>Manage Needy</NavLink>
+                  <NavLink to="/profile" onClick={() => setIsMenuOpen(!isMenuOpen)}>My Profile</NavLink>
+                  <NavLink to="/update-password" onClick={() => setIsMenuOpen(!isMenuOpen)}>Update Password</NavLink>
                 </>
               }
               <a className='cursor-pointer' onClick={() => { logout(); setIsMenuOpen(false) }}>Logout</a>

@@ -12,6 +12,30 @@ export const UserProvider = (props) => {
         role_id: ''
     })
 
+    const isLoggedIn = () => {
+        if (user?.accessToken === '') {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    const getRole = () => {
+        if (user?.role_id === 1) {
+            return 'needy'
+        }
+        else if (user?.role_id === 2) {
+            return 'donor'
+        }
+        else if (user?.role_id === 3) {
+            return 'admin'
+        }
+        else {
+            return null
+        }
+
+    }
+
     useEffect(() => {
         if (localStorage.getItem('UserData')) {
             //fetching the encrypted text
@@ -33,7 +57,7 @@ export const UserProvider = (props) => {
     }, [user])
 
     return (
-        <UserContext.Provider value={[user, setUser]}>
+        <UserContext.Provider value={[user, setUser, isLoggedIn, getRole]}>
             {props.children}
         </UserContext.Provider>
     )

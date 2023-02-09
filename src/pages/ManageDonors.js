@@ -59,7 +59,7 @@ const ManageDonors = () => {
               <th>Email</th>
               <th>Phone</th>
               <th>Address</th>
-              <th>Regn. Date</th>
+              <th>Regn. date</th>
               <th>Status</th>
               <th>Action</th>
             </tr>

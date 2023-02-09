@@ -7,6 +7,7 @@ import { BsFillImageFill } from 'react-icons/bs'
 import Modal from 'react-bootstrap/Modal';
 import { AiOutlineClose } from 'react-icons/ai'
 import { RiCheckLine, RiCloseLine } from 'react-icons/ri'
+import { thousandSeperator } from '../utils/helper';
 
 
 const DashboardAdmin = () => {
@@ -155,12 +156,12 @@ const DashboardAdmin = () => {
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>No. of Family member(s)</th>
+                <th>No. of family member(s)</th>
                 <th>Earning member(s) in family</th>
-                <th>Yearly Income</th>
-                <th>Source of Income</th>
-                <th>Regn. Date</th>
-                <th>Ration Card</th>
+                <th>Yearly income</th>
+                <th>Source of income</th>
+                <th>Regn. date</th>
+                <th>Ration card</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -176,7 +177,7 @@ const DashboardAdmin = () => {
                         <td>{request.email}</td>
                         <td>{request.noOfFamilyMembers}</td>
                         <td>{request.totalEarningMembersInFamily}</td>
-                        <td>{request.yearlyIncome}</td>
+                        <td>{thousandSeperator(request.yearlyIncome)}</td>
                         <td>{request.sourceOfIncome}</td>
                         <td>{new Date(request.registrationTimeStamp).toLocaleString('en-us')}</td>
                         <td>
@@ -186,8 +187,8 @@ const DashboardAdmin = () => {
                         </td>
                         <td>
                           <div className='edit-btn-container'>
-                            <button className='edit-btn' value={request.needy_id} onClick={(e) => { acceptNeedyRequests(e.target.value) }}><RiCheckLine className='edit-icon accept-icon ' /></button>
-                            <button className='edit-btn' value={request.needy_id} onClick={(e) => { rejectNeedyRequests(e.target.value) }}><RiCloseLine className='edit-icon reject-icon ' /></button>
+                            <button title='accept request' className='edit-btn' value={request.needy_id} onClick={(e) => { acceptNeedyRequests(e.target.value) }}><RiCheckLine className='edit-icon accept-icon ' /></button>
+                            <button title='reject request' className='edit-btn' value={request.needy_id} onClick={(e) => { rejectNeedyRequests(e.target.value) }}><RiCloseLine className='edit-icon reject-icon ' /></button>
                           </div>
                         </td>
                       </tr>

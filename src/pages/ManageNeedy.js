@@ -5,6 +5,7 @@ import { RiCheckLine, RiCloseLine } from 'react-icons/ri'
 import Modal from 'react-bootstrap/Modal';
 import { BsFillImageFill } from 'react-icons/bs'
 import { AiOutlineClose, AiOutlineDash } from 'react-icons/ai'
+import { thousandSeperator } from '../utils/helper';
 
 
 
@@ -75,7 +76,7 @@ const ManageNeedy = () => {
               <th>Yearly income</th>
               <th>Source of income</th>
               <th>Regn. date</th>
-              <th>Ration Card</th>
+              <th>Ration card</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -94,7 +95,7 @@ const ManageNeedy = () => {
                       <td>{needy.address}</td>
                       <td>{needy.noOfFamilyMembers}</td>
                       <td>{needy.totalEarningMembersInFamily}</td>
-                      <td>{needy.yearlyIncome}</td>
+                      <td>{thousandSeperator(needy.yearlyIncome)}</td>
                       <td>{needy.sourceOfIncome}</td>
                       <td>{new Date(needy.registrationTimeStamp).toLocaleString('en-GB')}</td>
                       <td>

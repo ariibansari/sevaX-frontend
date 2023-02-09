@@ -79,7 +79,7 @@ const LoginForm = () => {
                                 <form className='form-container' onSubmit={login}>
                                     <div className='input-grp'>
                                         <label htmlFor="login-email">Email <span className='text-danger'>*</span></label>
-                                        <input type="email" id="login-email" value={email} onChange={e => setEmail(e.target.value)} />
+                                        <input autoFocus type="email" id="login-email" value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
 
                                     <div className='input-grp'>

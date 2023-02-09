@@ -85,10 +85,28 @@ section {
     height: 2.6rem;
     transition: all 100ms linear;
 }
+
 .edit-btn:hover {
     background-color: rgba(128, 128, 128, 0.11);
 }
 
 .edit-icon {
     pointer-events: none;
+}
+
+.button-plain-text {
+    border: none;
+    background-color: transparent;
+    width: fit-content;
+    color: rgb(0, 55, 173);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: underline;
+    height: 2rem;
+}
+.button-plain-text:hover{
+    color: rgb(0, 69, 218);
+
 }

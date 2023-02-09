@@ -13,9 +13,12 @@ import { UserContext } from './context/UserProvider';
 import ManageDonors from './pages/ManageDonors';
 import ManageNeedy from './pages/ManageNeedy';
 import PageNotFound from './pages/PageNotFound';
+import Profile from './pages/Profile'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 function App() {
-  const [user, setUser] = useContext(UserContext)
+  const [user, getRole, isLoggedIn] = useContext(UserContext)
   return (
     <div className="App">
       <Router>
@@ -23,29 +26,62 @@ function App() {
         <Routes>
 
           {
-            user?.accessToken       //means user is logged in
-              ? <>
-                {user.role_id === 1       //means logged in user is needy
-                  ? <Route path='/' element={<DashboardNeedy />} />
-                  : <>
-                    {user.role_id === 2
-                      ? <Route path='/' element={<DashboardDonor />} />        //means logged in user in donor
-                      : <>
-                        <Route path='/' element={<DashboardAdmin />} />       //means logged in user is admin
-                        <Route path='/manage-donors' element={<ManageDonors />} />       
-                        <Route path='/manage-needy' element={<ManageNeedy />} />       
-                      </>
-                    }
-                  </>
-                }
+            isLoggedIn()
+              ?
+              <>
+                {/* ---   COMMON ROUTES FOR LOGGED IN USERS --- */}
+                <>
+                  <Route path='/profile' element={<Profile />} />
+                </>
+                {/* ---   END OF COMMON ROUTES FOR LOGGED IN USERS --- */}
+
+
+                <>
+                  {user.role_id === 1
+                    ?
+                    //---   NEEDY ONLY ROUTES ---
+                    <>
+                      <Route path='/' element={<DashboardNeedy />} />
+                    </>
+                    //---   END OF NEEDY ONLY ROUTES ---
+
+
+                    : <>
+                      {user.role_id === 2
+                        ?
+                        //---   DONOR ONLY ROUTES ---
+                        <>
+                          <Route path='/' element={<DashboardDonor />} />
+                        </>
+                        //---   DONOR ONLY ROUTES ---
+
+
+                        :
+                        //---   ADMIN ONLY ROUTES --- 
+                        <>
+                          <Route path='/' element={<DashboardAdmin />} />
+                          <Route path='/manage-donors' element={<ManageDonors />} />
+                          <Route path='/manage-needy' element={<ManageNeedy />} />
+                        </>
+                        //---   ADMIN ONLY ROUTES ---
+                      }
+                    </>
+                  }
+                </>
               </>
 
-              : <>
+
+              :
+              //---  ROUTES FOR UNLOGGED USER --- 
+              <>
                 <Route path='/' element={<Home />} />
                 <Route path='/register-donor' element={<RegisterDonor />} />
                 <Route path='/register-needy' element={<RegisterNeedy />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/contact' element={<Contact />} />
                 <Route path='/login' element={<Login />} />
               </>
+            //---  END OF ROUTES FOR UNLOGGED USER --- 
           }
 
           <Route path='*' element={<PageNotFound />} />

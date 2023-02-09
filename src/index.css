@@ -4,6 +4,8 @@
 @import url("./styles/forms.css");
 @import url("./styles/adminDashboard.css");
 @import url("./styles/table.css");
+@import url("./styles/profile.css");
+
 :root{
     box-sizing: border-box;
 }
