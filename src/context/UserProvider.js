@@ -37,9 +37,9 @@ export const UserProvider = (props) => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('UserData')) {
+        if (localStorage.getItem('sevaX_UserData')) {
             //fetching the encrypted text
-            const encryptedText = localStorage.getItem('UserData')
+            const encryptedText = localStorage.getItem('sevaX_UserData')
 
             //decrypt the text
             const decryptedText = decrypt(encryptedText)
@@ -53,7 +53,7 @@ export const UserProvider = (props) => {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('UserData', encrypt(JSON.stringify(user)));
+        localStorage.setItem('sevaX_UserData', encrypt(JSON.stringify(user)));
     }, [user])
 
     return (

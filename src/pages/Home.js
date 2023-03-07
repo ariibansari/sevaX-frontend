@@ -4,8 +4,8 @@ const Home = () => {
   return (
     <div>
       <h1 className='text-center text-primary'>Home</h1>
-      </div>
-    
+    </div>
+
   )
 }
 

@@ -59,16 +59,35 @@ function NavbarHome() {
             :
             <>
               {user?.role_id === 3    //means admin
-                &&
+                ?   //ADMIN LINKS
                 <>
                   <NavLink to="/manage-donors">Manage Donors</NavLink>
                   <NavLink to="/manage-needy">Manage Needy</NavLink>
+                </>
+
+                :
+                <>
+                  {user?.role_id === 2
+                    ?   //DONOR LINKS
+                    <>
+                      <NavLink to="/all-item">All Items</NavLink>
+                      <NavLink to="/add-item">Add Item</NavLink>
+
+                    </>
+
+                    :   //NEEDY LINKS
+                    <>
+                      <NavLink to="/all-items">All Items</NavLink>
+                      <NavLink to="/requested-items">Requested Items</NavLink>
+
+                    </>
+                  }
                 </>
               }
               <Dropdown className='dropdown-link'>
                 <Dropdown.Toggle>
                   {console.log(user)}
-                  <div className='profile-pic' style={{backgroundImage: `url(${user.profilePictureSrc ?`${process.env.REACT_APP_BASE_URL}${user.profilePictureSrc}` :'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'})`}}/>
+                  <div className='profile-pic' style={{ backgroundImage: `url(${user.profilePictureSrc ? `${process.env.REACT_APP_BASE_URL}${user.profilePictureSrc}` : 'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'})` }} />
                   {/* <img src= className='profile-pic' /> */}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -102,13 +121,31 @@ function NavbarHome() {
 
             :
             <>
-              {user?.role_id === 3    //means admin
-                &&
+              {user?.role_id === 3
+                ?   //ADMIN LINKS
                 <>
                   <NavLink to="/manage-donors" onClick={() => setIsMenuOpen(!isMenuOpen)}>Manage Donors</NavLink>
                   <NavLink to="/manage-needy" onClick={() => setIsMenuOpen(!isMenuOpen)}>Manage Needy</NavLink>
                   <NavLink to="/profile" onClick={() => setIsMenuOpen(!isMenuOpen)}>My Profile</NavLink>
                   <NavLink to="/update-password" onClick={() => setIsMenuOpen(!isMenuOpen)}>Update Password</NavLink>
+                </>
+
+                :
+                <>
+                  {user?.role_id === 2
+                    ?   //DONOR LINKS
+                    <>
+                      <NavLink to="/all-item" onClick={() => setIsMenuOpen(!isMenuOpen)}>All Items</NavLink>
+                      <NavLink to="/add-item" onClick={() => setIsMenuOpen(!isMenuOpen)}>Add Item</NavLink>
+                    </>
+
+                    :   //NEEDY LINKS
+                    <>
+                      <NavLink to="/all-items" onClick={() => setIsMenuOpen(!isMenuOpen)}>All Items</NavLink>
+                      <NavLink to="/requested-items" onClick={() => setIsMenuOpen(!isMenuOpen)}>My Requests</NavLink>
+
+                    </>
+                  }
                 </>
               }
               <a className='cursor-pointer' onClick={() => { logout(); setIsMenuOpen(false) }}>Logout</a>

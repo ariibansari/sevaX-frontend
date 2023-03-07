@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
-
 
 .profile-picture {
     width: 20rem;

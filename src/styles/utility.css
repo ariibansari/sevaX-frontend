@@ -6,7 +6,11 @@
 .section-title {
     font-family: 'Raleway', sans-serif;
 }
-
+.heading-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 
@@ -56,13 +60,20 @@ section {
 }
 
 .button {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     height: 2.6rem;
     background-color: var(--clr-main);
     border-radius: 20px;
-    width: 8rem;
     transition: all 100ms linear;
+    padding: 0 2rem;
+    gap: .5rem;
+}
+
+.button svg {
+    font-size: 1.5rem;
 }
 
 .button:hover {
@@ -106,7 +117,36 @@ section {
     text-decoration: underline;
     height: 2rem;
 }
-.button-plain-text:hover{
+
+.button-plain-text:hover {
     color: rgb(0, 69, 218);
 
+}
+
+.button-sec {
+    background-color: green;
+    color: white;
+    cursor: not-allowed;
+}
+.button-sec:hover {
+    background-color: green;
+    color: white;
+}
+
+.button-sec:disabled{
+    /* opacity: 0.7; */
+}
+
+.button-sec svg {
+    fill: rgb(131, 255, 131);
+}
+
+
+@media screen and (max-width: 720px){
+    .heading-container{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 }

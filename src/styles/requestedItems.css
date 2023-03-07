@@ -1,0 +1,64 @@
+@import url("./base.css");
+
+
+.legend-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.legend {
+    padding-left: 1.5rem;
+    position: relative;
+    margin: 0;
+    border-radius: 20px;
+    padding: .5rem 1.5rem;
+    padding-left: 2.3rem;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+
+.legend:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.legend::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    width: .7rem;
+    height: .7rem;
+    border-radius: 100%;
+}
+
+.legend-pending::before {
+    background-color: var(--clr-status-pending);
+    /* outline-color: var(--clr-status-pending); */
+}
+
+.legend-accepted::before {
+    background-color: var(--clr-status-accepted);
+    /* outline-color: var(--clr-status-accepted); */
+}
+
+.legend-rejected::before {
+    background-color: var(--clr-status-rejected);
+    /* outline-color: var(--clr-status-rejected); */
+}
+
+.legend.active {
+    background-color: #222222;
+    color: white;
+}
+.legend.active:hover{
+    background-color: #222222f5;
+
+}
+@media screen and (max-width: 786px) {
+    .legend-container {
+        justify-content: flex-start;
+    }
+}

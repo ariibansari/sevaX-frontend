@@ -21,6 +21,9 @@
 .form.lg {
     width: 50rem;
 }
+.form.xl {
+    width: 80%;
+}
 
 .form-container {
     display: flex;

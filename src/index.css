@@ -3,19 +3,26 @@
 @import url("./styles/navbar.css");
 @import url("./styles/forms.css");
 @import url("./styles/adminDashboard.css");
+@import url("./styles/donorDashboard.css");
 @import url("./styles/table.css");
 @import url("./styles/profile.css");
+@import url("./styles/itemForm.css");
+@import url("./styles/itemCards.css");
+@import url("./styles/item.css");
+@import url("./styles/needyDashboard.css");
+@import url("./styles/requestedItems.css");
+@import url("./styles/requestList.css");
 
-:root{
+:root {
     box-sizing: border-box;
 }
 
-body{
+body {
     /* font-family: 'Maven Pro', sans-serif !important; */
     font-family: 'Poppins', sans-serif !important;
     /* font-family: 'Playfair Display', serif !important; */
     /* border: solid; */
     background-color: var(--bg-body) !important;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
-

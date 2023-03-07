@@ -1,0 +1,105 @@
+@import url("./base.css");
+
+.item-view-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.item-view-right .item-header {
+    display: flex;
+    gap: .6rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1.5rem 0;
+}
+
+.item-header .back-icon {
+    font-size: 1.5rem;
+}
+
+.item-view-right h3 {
+    margin: .2rem 0;
+}
+
+.item-view-right {
+    width: 40%;
+}
+
+.item-view-left {
+    width: 60%;
+}
+
+.item-view-left .item-img {
+    border-radius: 10px;
+    width: 100%;
+    height: 25rem;
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+
+
+/* ---------  NEEDY VIEW  ---------- */
+.request-status-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+
+.request-status-container p {
+    margin: 0;
+    font-weight: 500;
+    color: rgb(49, 49, 49);
+}
+
+.request-status-container .status-icon.accepted {
+    font-size: 2rem;
+    border-radius: 100%;
+    border: 2px solid var(--clr-status-accepted);
+    padding: 5px;
+    color: var(--clr-status-accepted);
+}
+
+.request-status-container .status-icon.pending {
+    font-size: 2rem;
+    color: var(--clr-status-pending);
+}
+
+.request-status-container .status-icon.rejected {
+    font-size: 2.5rem;
+    color: var(--clr-status-rejected);
+}
+
+
+
+
+
+@media screen and (max-width: 786px) {
+    .item-view-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .item-view-left {
+        width: 100%;
+    }
+
+    .item-view-left .item-img {
+        width: 100%;
+    }
+
+    .item-header {
+        margin: 1rem 0;
+    }
+
+    .item-view-right {
+        width: 100%;
+    }
+}

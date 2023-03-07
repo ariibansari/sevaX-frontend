@@ -1,0 +1,24 @@
+@import url("./base.css");
+
+.recent-items-container{
+    margin-top: 4rem;
+}
+
+.recent-items-container .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.recent-items-container .header h3{
+    margin: 0;
+}
+
+.recent-items-container .item{
+    margin-top: 1.5rem;
+}
+
+.container{
+    padding: 0 !important;
+}
+
+@media screen and (max-width: 786px) {}

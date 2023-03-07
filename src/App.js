@@ -16,6 +16,12 @@ import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import AddItem from './pages/AddItem';
+import AllItems from './pages/AllItems';
+import Item from './pages/Item';
+import ItemNeedyView from './pages/ItemNeedyView';
+import AllItemsNeedyView from './pages/AllItemsNeedyView';
+import RequestedItems from './pages/RequestedItems';
 
 function App() {
   const [user, getRole, isLoggedIn] = useContext(UserContext)
@@ -42,6 +48,9 @@ function App() {
                     //---   NEEDY ONLY ROUTES ---
                     <>
                       <Route path='/' element={<DashboardNeedy />} />
+                      <Route path='/item/:item_id' element={<ItemNeedyView />} />
+                      <Route path='/all-items' element={<AllItemsNeedyView />} />
+                      <Route path='/requested-items' element={<RequestedItems />} />
                     </>
                     //---   END OF NEEDY ONLY ROUTES ---
 
@@ -52,6 +61,9 @@ function App() {
                         //---   DONOR ONLY ROUTES ---
                         <>
                           <Route path='/' element={<DashboardDonor />} />
+                          <Route path='/add-item' element={<AddItem />} />
+                          <Route path='/all-item' element={<AllItems />} />
+                          <Route path='/item/:item_id' element={<Item />} />
                         </>
                         //---   DONOR ONLY ROUTES ---
 

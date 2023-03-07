@@ -1,0 +1,88 @@
+@import url("./base.css");
+
+
+.item-form-container {
+    margin-top: 3rem;
+    display: flex;
+    gap: 10%;
+}
+
+.item-img {
+    width: 45%;
+    height: 30rem;
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    background-image: url('https://img.freepik.com/premium-photo/holding-clothing-donation-box-with-used-clothes-doll-home-support-help-poor-people-world_39768-5151.jpg?w=2000');
+}
+
+.item-details {
+    width: 45%;
+}
+
+.image-file-container {
+    position: relative;
+    height: 20rem;
+}
+
+.image-file-container input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    /* background-image: url('https://img.freepik.com/premium-photo/holding-clothing-donation-box-with-used-clothes-doll-home-support-help-poor-people-world_39768-5151.jpg?w=2000'); */
+}
+
+.form-flex-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.form-flex-container .image-file-container {
+    width: 50%;
+}
+
+.form-flex-container .form-container-grp {
+    width: 50%;
+}
+
+.form-container-grp {
+    padding-top: 0.1rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container-grp label {
+    margin-bottom: 0.4rem;
+}
+
+#item-details {
+    height: 11rem;
+}
+
+@media screen and (max-width: 786px) {
+    .item-form-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .item-img {
+        width: 100%;
+    }
+
+    .item-details {
+        width: 100%;
+    }
+}
