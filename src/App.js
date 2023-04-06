@@ -22,6 +22,7 @@ import Item from './pages/Item';
 import ItemNeedyView from './pages/ItemNeedyView';
 import AllItemsNeedyView from './pages/AllItemsNeedyView';
 import RequestedItems from './pages/RequestedItems';
+import AcceptedItems from './pages/AcceptedItems';
 
 function App() {
   const [user, getRole, isLoggedIn] = useContext(UserContext)
@@ -51,6 +52,7 @@ function App() {
                       <Route path='/item/:item_id' element={<ItemNeedyView />} />
                       <Route path='/all-items' element={<AllItemsNeedyView />} />
                       <Route path='/requested-items' element={<RequestedItems />} />
+                      <Route path='/accepted-items' element={<AcceptedItems />} />
                     </>
                     //---   END OF NEEDY ONLY ROUTES ---
 

@@ -79,6 +79,7 @@ function NavbarHome() {
                     <>
                       <NavLink to="/all-items">All Items</NavLink>
                       <NavLink to="/requested-items">Requested Items</NavLink>
+                      <NavLink to="/accepted-items">Accepted Items</NavLink>
 
                     </>
                   }

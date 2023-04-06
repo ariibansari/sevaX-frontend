@@ -1,10 +1,90 @@
 @import url("./base.css");
 
-
-
-
-
-
-@media screen and (max-width: 425px) {
-
+.request-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
+
+.request {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    /* border: 1px solid rgb(226, 226, 226); */
+    /* background-color: rgba(235, 235, 235, 0.199); */
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.request .profile-picture-container {
+    width: 15%;
+    min-width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.request .profile-picture {
+    width: 8rem !important;
+    height: 8rem !important;
+}
+
+.request-right {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.details-top {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+
+.details {
+    width: 75%;
+}
+
+.details-bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: .5rem 0;
+}
+
+.details-bottom .detail {
+    margin: 0;
+    padding: 0;
+    color: var(--text-sec);
+}
+
+.details-bottom .seperator {
+    width: 1px;
+    height: 1rem;
+    background-color: var(--text-sec);
+    margin: 0 10px;
+}
+
+.actions{
+    width: 25%;
+    min-width: 11rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.actions .edit-btn {
+    width: 4rem;
+    height: 4rem;
+}
+.actions .edit-btn svg{
+    font-size: 1.3rem;
+}
+
+
+
+@media screen and (max-width: 425px) {}

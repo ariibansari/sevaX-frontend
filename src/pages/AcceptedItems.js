@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import ProtectedAxios from '../api/protectedAxios'
 import { UserContext } from '../context/UserProvider'
 
-const RequestedItems = () => {
+const AcceptedItems = () => {
   const [user] = useContext(UserContext)
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
@@ -13,18 +13,18 @@ const RequestedItems = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetchItems()
+    fetchAcceptedItems()
   }, [])
 
   useEffect(() => {
     filterItems()
   }, [selectedFilter])
 
-  const fetchItems = () => {
+  const fetchAcceptedItems = () => {
     setLoading(true)
-    ProtectedAxios.post('/needy/getAllRequestedItems', { user_id: user.user_id })
+    ProtectedAxios.post('/needy/getAllAcceptedItems', { user_id: user.user_id })
       .then(res => {
-        console.log('all item of donor - ', res.data);
+        console.log('accepted item of donor - ', res.data);
         setItems(res.data)
         setItemsBackup(res.data)
         setLoading(false)
@@ -41,9 +41,7 @@ const RequestedItems = () => {
     } else {
       const a =
         itemsBackup.filter(item => {
-          console.log(selectedFilter);
-          console.log(item.request_status);
-          if (item.request_status === selectedFilter) {
+          if (item.delivery_status === selectedFilter) {
             return item
           }
         })
@@ -62,19 +60,19 @@ const RequestedItems = () => {
               <div className='flexed-container column'>
                 <TfiDropboxAlt className='pending-icon' />
                 <h2>No Items Found</h2>
-                <p className='text-center'>There are no items to display. You can see you requested items here after you apply for them.</p>
-                <button className="button button-main" onClick={() => navigate("/all-items")}>View Items</button>
+                <p className='text-center'>There are currently no accepted items to view. If the request for any item is accepted you can see them here.</p>
+                <button className="button button-main" onClick={() => navigate(-1)}>Go Back</button>
               </div>
             </div>
 
             :
             <>
               <div className='heading-container'>
-                <h3>Requested Items</h3>
+                <h3>Accepted Items</h3>
                 <div className='legend-container'>
                   <span className={`legend px-4 ${selectedFilter === '' && 'active'}`} onClick={() => { if (selectedFilter !== "") { setSelectedFilter('') } else { setSelectedFilter('') } }}>All</span>
-                  <span className={`legend legend-pending ${selectedFilter === 0 && 'active'}`} onClick={() => { if (selectedFilter !== 0) { setSelectedFilter(0) } else { setSelectedFilter('') } }}>Request Pending</span>
-                  <span className={`legend legend-rejected ${selectedFilter === -1 && 'active'}`} onClick={() => { if (selectedFilter !== -1) { setSelectedFilter(-1) } else { setSelectedFilter('') } }}>Request Rejected</span>
+                  <span className={`legend legend-pending ${selectedFilter === 0 && 'active'}`} onClick={() => { if (selectedFilter !== 0) { setSelectedFilter(0) } else { setSelectedFilter('') } }}>Delivery Pending</span>
+                  <span className={`legend legend-accepted ${selectedFilter === 1 && 'active'}`} onClick={() => { if (selectedFilter !== 1) { setSelectedFilter(1) } else { setSelectedFilter('') } }}>Delivered</span>
                 </div>
               </div>
               <div className='item-list-container'>
@@ -87,7 +85,7 @@ const RequestedItems = () => {
                           <div className='item' key={i} onClick={() => navigate(`/item/${item.item_id}`)}>
                             <div className='image' style={{ backgroundImage: `url('${process.env.REACT_APP_BASE_URL}${item.pictureSrc}')` }} />
                             <div className='item-status-container'>
-                              <span className={`item-status ${item.request_status === 0 ? 'status-pending' : item.request_status === 1 ? 'status-accepted' : 'status-rejected'}`}></span>
+                              <span className={`item-status ${item.delivery_status === 0 ? 'status-pending' : item.delivery_status === 1 ? 'status-accepted' : 'status-rejected'}`}></span>
                               <div>
                                 <div className='name' title={item.name}>{item.name.substring(0, 24)} {item.name.length > 24 && '...'}</div>
                                 <div className='desc'>{item.description.substring(0, 55)} {item.description.length > 55 && '....'}</div>
@@ -117,4 +115,4 @@ const RequestedItems = () => {
   )
 }
 
-export default RequestedItems
+export default AcceptedItems

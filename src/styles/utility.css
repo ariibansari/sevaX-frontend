@@ -60,16 +60,20 @@ section {
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    height: 2.6rem;
-    background-color: var(--clr-main);
-    border-radius: 20px;
-    transition: all 100ms linear;
-    padding: 0 2rem;
-    gap: .5rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: none !important;
+    height: 2.6rem !important;
+    background-color: var(--clr-main) !important;
+    border-radius: 20px !important;
+    transition: all 100ms linear !important;
+    padding: 0 2rem !important;
+    gap: .5rem !important;
+}
+.button:disabled{
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .button svg {
@@ -139,6 +143,11 @@ section {
 
 .button-sec svg {
     fill: rgb(131, 255, 131);
+}
+
+.button-success{
+    background-color: rgb(0, 172, 0) !important;
+    color: white !important;
 }
 
 
