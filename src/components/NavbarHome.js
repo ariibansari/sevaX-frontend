@@ -48,8 +48,8 @@ function NavbarHome() {
                   Register
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <NavLink className='dropdown-item' to="/register-donor">Donor</NavLink>
-                  <NavLink className='dropdown-item' to="/register-needy">Needy</NavLink>
+                  <NavLink className='dropdown-item' to="/register-donor">Make donation</NavLink>
+                  <NavLink className='dropdown-item' to="/register-needy">Receive donation</NavLink>
 
                 </Dropdown.Menu>
               </Dropdown>
@@ -115,8 +115,8 @@ function NavbarHome() {
             ? <>
               <NavLink to="/about" onClick={() => setIsMenuOpen(!isMenuOpen)}>About</NavLink>
               <NavLink to="/contact" onClick={() => setIsMenuOpen(!isMenuOpen)}>Contact</NavLink>
-              <NavLink to="/register-donor" onClick={() => setIsMenuOpen(!isMenuOpen)}>Donor Registration</NavLink>
-              <NavLink to="/register-needy" onClick={() => setIsMenuOpen(!isMenuOpen)}>Needy Registration</NavLink>
+              <NavLink to="/register-donor" onClick={() => setIsMenuOpen(!isMenuOpen)}>Register - for making donation</NavLink>
+              <NavLink to="/register-needy" onClick={() => setIsMenuOpen(!isMenuOpen)}>Register - for receiving donation</NavLink>
               <NavLink to="/login" onClick={() => setIsMenuOpen(!isMenuOpen)}>Login</NavLink>
             </>
 

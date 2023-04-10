@@ -54,8 +54,8 @@ const DonorRegistrationForm = () => {
             {!registrationSucceeded
                 ?
                 <>
-                    <h2>Donor Registration</h2>
-                    <p className='subtitle' style={{ marginTop: '-1rem' }}>Register with us and start donating</p>
+                    <h2>Make a Difference Today</h2>
+                    <p className='subtitle text-center' style={{ marginTop: '-1rem' }}>Join our community of donors and give hope to those in need.</p>
                     <form className='form-container' onSubmit={register}>
                         <div className='input-grp'>
                             <label htmlFor="full-name-input">Full Name <span className='text-danger'>*</span></label>

@@ -12,6 +12,7 @@
 @import url("./styles/needyDashboard.css");
 @import url("./styles/requestedItems.css");
 @import url("./styles/requestList.css");
+@import url("./styles/showDeliveryCodeModal.css");
 
 :root {
     box-sizing: border-box;

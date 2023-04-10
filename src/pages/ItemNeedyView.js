@@ -6,6 +6,10 @@ import { FcCancel } from 'react-icons/fc';
 import { useNavigate, useParams } from 'react-router-dom'
 import ProtectedAxios from '../api/protectedAxios';
 import { UserContext } from '../context/UserProvider'
+import { RiTruckFill } from 'react-icons/ri'
+import { MdPending } from 'react-icons/md'
+import ShowDeliveryCodeModal from '../components/ShowDeliveryCodeModal';
+
 
 const Item = () => {
     const [user] = useContext(UserContext)
@@ -114,33 +118,51 @@ const Item = () => {
                                             </button>
 
                                             :
-                                            <div className='request-status-container'>
-                                                {itemRequestStatus[0].request_status === 0
-                                                    ?
-                                                    <>
-                                                        <BsClockHistory className='status-icon pending' />
-                                                        <p className='status-msg'>Request Sent</p>
-                                                    </>
-                                                    :
-                                                    <>
-                                                        {itemRequestStatus[0].request_status === 1
-                                                            ?
-                                                            <>
-                                                                <MdOutlineDone className='status-icon accepted' />
-                                                                <p className='status-msg'>Request Accepted</p>
-                                                            </>
-                                                            :
-                                                            <>
-                                                                <FcCancel className='status-icon rejected' />
-                                                                <p className='status-msg'>Request Rejected</p>
-                                                            </>
-                                                        }
-                                                    </>
-                                                }
-                                            </div>
+                                            <>
+                                                <div className='request-status-container'>
+                                                    {itemRequestStatus[0].request_status === 0
+                                                        ?
+                                                        <>
+                                                            <BsClockHistory className='status-icon pending' />
+                                                            <p className='status-msg'>Request Sent</p>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            {itemRequestStatus[0].request_status === 1
+                                                                ?
+                                                                <>
+                                                                    {itemRequestStatus[0].delivery_status === 1
+                                                                        ?
+                                                                        <>
+                                                                            <MdOutlineDone className='status-icon accepted' />
+                                                                            <p className='status-msg'>Item Received on {new Date(itemRequestStatus[0].delivered_at).toDateString()}</p>
+                                                                        </>
+
+                                                                        :
+                                                                        <div className=''>
+                                                                            <div className='d-flex align-items-center gap-2'>
+                                                                                <MdPending className='status-icon pending' />
+                                                                                <p className='status-msg'>Request Accepted, delivery pending</p>
+                                                                            </div>
+                                                                            <div className='my-4'>
+                                                                                <ShowDeliveryCodeModal code={itemRequestStatus[0].delivery_code} item_name={item.name} />
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </>
+                                                                :
+                                                                <>
+                                                                    <FcCancel className='status-icon rejected' />
+                                                                    <p className='status-msg'>Request Rejected</p>
+                                                                </>
+                                                            }
+                                                        </>
+                                                    }
+                                                </div>
+                                            </>
+
                                         }
                                     </>
-                                    {/* <p className='text-center'>New User?<br />Register - <NavLink to="/register-donor">Donor</NavLink> | <NavLink to="/register-needy">Needy</NavLink></p> */}
                                 </div>
                             </div>
 

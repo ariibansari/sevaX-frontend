@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { TfiDropboxAlt } from 'react-icons/tfi'
+import { TfiDropboxAlt, TfiEye } from 'react-icons/tfi'
 import { useNavigate } from 'react-router-dom'
 import ProtectedAxios from '../api/protectedAxios'
 import { UserContext } from '../context/UserProvider'
+import ShowDeliveryCodeModal from '../components/ShowDeliveryCodeModal'
 
 const AcceptedItems = () => {
   const [user] = useContext(UserContext)
@@ -11,6 +12,7 @@ const AcceptedItems = () => {
   const [itemsBackup, setItemsBackup] = useState([])
   const [selectedFilter, setSelectedFilter] = useState('')
   const navigate = useNavigate()
+
 
   useEffect(() => {
     fetchAcceptedItems()
@@ -82,17 +84,22 @@ const AcceptedItems = () => {
                     {
                       items.map((item, i) => {
                         return (
-                          <div className='item' key={i} onClick={() => navigate(`/item/${item.item_id}`)}>
-                            <div className='image' style={{ backgroundImage: `url('${process.env.REACT_APP_BASE_URL}${item.pictureSrc}')` }} />
+                          <div className='item' key={i}
+                          // onClick={() => { navigate(`/item/${item.item_id}`) }}
+                          >
+                            <div onClick={() => { navigate(`/item/${item.item_id}`) }} className='image' style={{ backgroundImage: `url('${process.env.REACT_APP_BASE_URL}${item.pictureSrc}')` }} />
                             <div className='item-status-container'>
                               <span className={`item-status ${item.delivery_status === 0 ? 'status-pending' : item.delivery_status === 1 ? 'status-accepted' : 'status-rejected'}`}></span>
                               <div>
-                                <div className='name' title={item.name}>{item.name.substring(0, 24)} {item.name.length > 24 && '...'}</div>
-                                <div className='desc'>{item.description.substring(0, 55)} {item.description.length > 55 && '....'}</div>
+                                <div onClick={() => { navigate(`/item/${item.item_id}`) }} className='name' title={item.name}>{item.name.substring(0, 24)} {item.name.length > 24 && '...'}</div>
+                                <div onClick={() => { navigate(`/item/${item.item_id}`) }} className='desc'>{item.description.substring(0, 55)} {item.description.length > 55 && '....'}</div>
                                 {/* <div className='date'>{new Date(item.request_timestamp).toLocaleString('en-US')}</div> */}
                               </div>
                             </div>
-                            <div className='item-profile-container'>
+                            <div className='d-flex justify-content-center'>
+                              <ShowDeliveryCodeModal code={item.delivery_code} item_name={item.name} delivery_status={item.delivery_status} delivered_at={item.delivered_at} />
+                            </div>
+                            <div className='item-profile-container' onClick={() => { navigate(`/item/${item.item_id}`) }}>
                               <div className='item-card-profile' title={item.donor_name} style={{ backgroundImage: `url(${item.profilePictureSrc ? `${process.env.REACT_APP_BASE_URL}${item.profilePictureSrc}` : 'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'})` }} />
                               <div className='donor_name'>by {item.donor_name.substring(0, 18)}{item.donor_name.length > 18 && '...'}</div>
                             </div>

@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import Axios from '../api/axios'
 import { MdFileUpload } from 'react-icons/md'
 import NeedyRegistrationSuccess from './NeedyRegistrationSuccess';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import { BsFillInfoCircleFill } from 'react-icons/bs'
 
 const NeedyRegistrationForm = () => {
-    const [onStep2, setOnStep2] = useState(false)
+    const [onStep2, setOnStep2] = useState(true)
     const [registrationSucceeded, setRegistrationSucceeded] = useState(false)
     const [registrationData, setRegistrationData] = useState({
         name: '',
@@ -19,7 +22,11 @@ const NeedyRegistrationForm = () => {
         isHeadOfFamily: false,
         yearlyIncome: '',
         sourceOfIncome: '',
+        aadharCardFile: '',
         rationCardFile: '',
+        rationCardType: '',
+
+        noteForAdmin: '',
     })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
@@ -103,8 +110,8 @@ const NeedyRegistrationForm = () => {
             {!registrationSucceeded
                 ?
                 <>
-                    <h2>Needy Registration</h2>
-                    <p className='subtitle' style={{ marginTop: '-1rem' }}>Register with us and start donating</p>
+                    <h2>Help is just a registration away</h2>
+                    <p className='subtitle text-center' style={{ marginTop: '-1rem' }}>Together, we can make a difference - register now to receive donations from our kind-hearted donors.</p>
                     <div className='reg-step-container'>
                         <span className='step step1'>1</span>
                         <span className='connector connector1' />
@@ -225,10 +232,47 @@ const NeedyRegistrationForm = () => {
                                         id="income-source-input" value={registrationData.sourceOfIncome} onChange={e => setRegistrationData({ ...registrationData, sourceOfIncome: e.target.value })} />
                                 </div>
                                 <div className='input-grp file-upload'>
+                                    <label htmlFor="aadhar-card-file">Upload Aadhar Card <span className='text-danger'>*</span></label>
+                                    <input type="file" accept="image/*" required name='aadhar-card-file' id="aadhar-card-file" onChange={e => { setRegistrationData({ ...registrationData, aadharCardFile: e.target.files[0] }); console.log(e.target.files[0]); }} />
+                                    <MdFileUpload className='upload-icon' />
+                                </div>
+                            </div>
+                            <div className='form-grp'>
+                                <div className='input-grp file-upload'>
                                     <label htmlFor="ration-card-file">Upload Ration Card <span className='text-danger'>*</span></label>
                                     <input type="file" accept="image/*" required name='ration-card-file' id="ration-card-file" onChange={e => { setRegistrationData({ ...registrationData, rationCardFile: e.target.files[0] }); console.log(e.target.files[0]); }} />
                                     <MdFileUpload className='upload-icon' />
                                 </div>
+                                <div className='input-grp'>
+                                    <label htmlFor="ration-card-type">Ration Card Type <span className='text-danger'>*</span></label>
+                                    <select
+                                        required
+                                        id="ration-card-type" value={registrationData.rationCardType} onChange={e => setRegistrationData({ ...registrationData, rationCardType: e.target.value })}>
+                                        <option value="yellow">Yellow Ration Card</option>
+                                        <option value="saffron">Saffron Ration Card</option>
+                                        <option value="white">White Ration Card</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className='input-grp'>
+                                <label htmlFor="address-textarea">
+                                    Note for us
+                                    <OverlayTrigger
+                                        delay={{ hide: 450, show: 300 }}
+                                        overlay={(props) => (
+                                            <Tooltip {...props}>
+                                                anything that we should know that would help our decision when verifying your account
+                                            </Tooltip>
+                                        )}
+                                        placement="right"
+                                    >
+                                        <button type="button" className='tooltip-button'><BsFillInfoCircleFill /></button>
+                                    </OverlayTrigger>
+                                </label>
+                                <textarea id="address-textarea"
+                                    required
+                                    value={registrationData.address} onChange={e => setRegistrationData({ ...registrationData, address: e.target.value })} />
                             </div>
 
                             <div className='btn-container'>

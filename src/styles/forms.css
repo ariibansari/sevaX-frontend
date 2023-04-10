@@ -21,6 +21,7 @@
 .form.lg {
     width: 50rem;
 }
+
 .form.xl {
     width: 80%;
 }
@@ -55,7 +56,8 @@
 }
 
 input,
-textarea {
+textarea,
+select {
     border: none;
     /* background-color: rgba(241, 241, 241, 0.418); */
     height: 3.2rem;
@@ -96,6 +98,21 @@ textarea {
 .password-options {
     display: flex;
     justify-content: space-between;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    padding-right: 3.5rem;
+}
+
+.input-with-icon .button-icon {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .show-password {
@@ -191,11 +208,12 @@ textarea {
     cursor: pointer;
 }
 
-.pending-icon{
+.pending-icon {
     font-size: 3rem;
     color: rgb(54, 54, 54);
 }
-.declined-icon{
+
+.declined-icon {
     font-size: 3rem;
     color: rgb(255, 0, 0);
 }

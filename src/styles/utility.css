@@ -70,6 +70,8 @@ section {
     transition: all 100ms linear !important;
     padding: 0 2rem !important;
     gap: .5rem !important;
+    text-decoration: none !important;
+    color: #222 !important;
 }
 .button:disabled{
     cursor: not-allowed;
@@ -84,6 +86,15 @@ section {
     background-color: var(--clr-main-hover);
 }
 
+.tooltip-button {
+    background-color: transparent !important;
+    width: auto !important;
+    border: none !important;
+}
+
+.tooltip-button svg {
+    margin-top: -5px;
+}
 
 .edit-btn-container {
     display: flex;
@@ -128,13 +139,23 @@ section {
 }
 
 .button-sec {
-    background-color: green;
+    background-color: #222 !important;
     color: white;
     cursor: not-allowed;
 }
 .button-sec:hover {
-    background-color: green;
+    background-color: #333333 !important;
     color: white;
+}
+.button-ghost {
+    background-color: transparent !important;
+    color: #222;
+    border: 1px solid #222 !important;
+    cursor: not-allowed;
+}
+.button-ghost:hover {
+    background-color: #e6e6e6 !important;
+    color: #222 !important;
 }
 
 .button-sec:disabled{
@@ -148,6 +169,11 @@ section {
 .button-success{
     background-color: rgb(0, 172, 0) !important;
     color: white !important;
+}
+
+.small-textonly-button{
+    font-size: .9rem;
+    padding: 0;
 }
 
 

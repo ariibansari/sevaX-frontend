@@ -1,0 +1,43 @@
+@import url("./base.css");
+
+.show-code-modal .modal-content {
+    min-width: 22rem !important;
+}
+
+.show-code-modal .modal-footer {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.show-code-container {
+    padding: 1rem 0 0.3rem 0;
+}
+
+.show-code-container .item-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.show-code-container .item-code {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 0;
+    /* border: 1px dotted #616161; */
+    border-radius: 10px;
+    padding: .5rem 0;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='gray' stroke-width='2' stroke-dasharray='5%2c 10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    transition: all 100ms linear;
+    cursor: pointer;
+}
+
+.show-code-container .item-code:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.info{
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 800px) {}
