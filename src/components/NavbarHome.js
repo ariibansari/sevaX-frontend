@@ -48,8 +48,8 @@ function NavbarHome() {
                   Register
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <NavLink className='dropdown-item' to="/register-donor">Make donation</NavLink>
-                  <NavLink className='dropdown-item' to="/register-needy">Receive donation</NavLink>
+                  <NavLink className='dropdown-item' to="/register-donor">for making donation</NavLink>
+                  <NavLink className='dropdown-item' to="/register-needy">for receiving donation</NavLink>
 
                 </Dropdown.Menu>
               </Dropdown>

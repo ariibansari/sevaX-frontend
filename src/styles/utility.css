@@ -96,6 +96,20 @@ section {
     margin-top: -5px;
 }
 
+.text-only-button:hover{
+    color: rgb(55, 55, 255);
+}
+.text-only-button{
+    color: blue;
+    text-decoration: underline;
+    border: none;
+    padding: none;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    padding-left: 0;
+}
+
 .edit-btn-container {
     display: flex;
     gap: 5%;

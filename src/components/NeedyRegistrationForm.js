@@ -7,8 +7,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BsFillInfoCircleFill } from 'react-icons/bs'
 
 const NeedyRegistrationForm = () => {
-    const [onStep2, setOnStep2] = useState(true)
+    const [onStep2, setOnStep2] = useState(false)
     const [registrationSucceeded, setRegistrationSucceeded] = useState(false)
+    const [isConsentChecked, setIsConsentChecked] = useState(false)
     const [registrationData, setRegistrationData] = useState({
         name: '',
         phone: '',
@@ -79,7 +80,13 @@ const NeedyRegistrationForm = () => {
         formData.append('isHeadOfFamily', registrationData.isHeadOfFamily)
         formData.append('yearlyIncome', registrationData.yearlyIncome)
         formData.append('sourceOfIncome', registrationData.sourceOfIncome)
+
+        formData.append('aadharCardFile', registrationData.aadharCardFile)
+
         formData.append('rationCardFile', registrationData.rationCardFile)
+        formData.append('rationCardType', registrationData.rationCardType)
+
+        formData.append('noteForAdmin', registrationData.noteForAdmin)
 
         Axios.post('/auth/register/needy', formData)
             .then(res => {
@@ -271,8 +278,12 @@ const NeedyRegistrationForm = () => {
                                     </OverlayTrigger>
                                 </label>
                                 <textarea id="address-textarea"
-                                    required
-                                    value={registrationData.address} onChange={e => setRegistrationData({ ...registrationData, address: e.target.value })} />
+                                    value={registrationData.noteForAdmin} onChange={e => setRegistrationData({ ...registrationData, noteForAdmin: e.target.value })} />
+                            </div>
+
+                            <div className='d-flex align-items-start gap-3'>
+                                <input required className='' type="checkbox" style={{width:"1.2rem", height:"1.2rem", marginTop:"4px"}} checked={isConsentChecked} onClick={() => setIsConsentChecked(!isConsentChecked)} />
+                                <p style={{width:"90%", fontSize:"15px", cursor:"pointer"}} onClick={()=>setIsConsentChecked(!isConsentChecked)}>By registering and uploading documents, I confirm that all information and documents provided are accurate and authentic. Uploading fake/invalid documents or providing false information may lead to consequences and account being blocked from the platform. <span className='text-danger'>*</span></p>
                             </div>
 
                             <div className='btn-container'>

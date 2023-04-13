@@ -25,10 +25,14 @@ const DashboardAdmin = () => {
   const [needyRequests, setNeedyRequests] = useState('')
   const [refreshNeedyRequests, setRefreshNeedyRequests] = useState(false)
 
-  const [selectedImgSrc, setSelectedImgSrc] = useState('')
+  const [selectedNeedy, setSelectedNeedy] = useState('')
   const [showImage, setShowImage] = useState(false);
   const closeImageModal = () => { setShowImage(false) };
   const showImageModal = () => { setShowImage(true) };
+
+  const [showCompleteNote, setShowCompleteNote] = useState(false);
+  const closeNoteModal = () => { setShowCompleteNote(false) };
+  const showNoteModal = () => { setShowCompleteNote(true) };
 
   useEffect(() => {
     getDonorStats()
@@ -161,7 +165,8 @@ const DashboardAdmin = () => {
                 <th>Yearly income</th>
                 <th>Source of income</th>
                 <th>Regn. date</th>
-                <th>Ration card</th>
+                <th>Documents</th>
+                <th>Note from needy</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -182,9 +187,10 @@ const DashboardAdmin = () => {
                         <td>{new Date(request.registrationTimeStamp).toLocaleString('en-us')}</td>
                         <td>
                           <div className='edit-btn-container'>
-                            <button className='edit-btn' value={request.rationCardSrc} onClick={(e) => { setSelectedImgSrc(e.target.value); showImageModal() }}><BsFillImageFill className='edit-icon' /></button>
+                            <button className='edit-btn' value={JSON.stringify(request)} onClick={(e) => { setSelectedNeedy(JSON.parse(e.target.value)); showImageModal() }}><BsFillImageFill className='edit-icon' /></button>
                           </div>
                         </td>
+                        <td>{request.noteForAdmin.length < 40 ? request.noteForAdmin : <>{request.noteForAdmin.substring(0, 40)}...<br /><button className='text-only-button' value={JSON.stringify(request)} onClick={e => { console.log(e.target.value); setSelectedNeedy(JSON.parse(e.target.value)); showNoteModal() }}>read more</button></>}<br /><br /></td>
                         <td>
                           <div className='edit-btn-container'>
                             <button title='accept request' className='edit-btn' value={request.needy_id} onClick={(e) => { acceptNeedyRequests(e.target.value) }}><RiCheckLine className='edit-icon accept-icon ' /></button>
@@ -214,17 +220,44 @@ const DashboardAdmin = () => {
       <Modal className='full-width-modal' show={showImage} onHide={closeImageModal} centered size="xl">
         <Modal.Header >
           <Modal.Title className='h-100 w-100 d-flex justify-content-between align-center'>
-            View Image
+            View Documents
             <AiOutlineClose className='' style={{ cursor: 'pointer' }} role='button' onClick={closeImageModal} />
           </Modal.Title>
         </Modal.Header>
         < Modal.Body >
+          <p className='px-2 fw-bolder'>Ration Card -</p>
           <div className='ration-car-img-container'>
-            <img src={`${process.env.REACT_APP_BASE_URL}${selectedImgSrc}`} className='ration-card-img' />
+            <img src={`${process.env.REACT_APP_BASE_URL}${selectedNeedy.rationCardSrc}`} className='ration-card-img' />
+          </div>
+          <br />
+          <hr />
+          <br />
+          <p className='px-2 fw-bolder'>Aadhar Card -</p>
+          <div className='ration-car-img-container'>
+            <img src={`${process.env.REACT_APP_BASE_URL}${selectedNeedy.aadharCardSrc}`} className='ration-card-img' />
           </div>
         </Modal.Body>
         <Modal.Footer>
           <button onClick={() => closeImageModal()} className='btn btn-danger my-4 mx-3'>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal >
+
+      <Modal className='' show={showCompleteNote} onHide={closeNoteModal} centered size="lg">
+        <Modal.Header >
+          <Modal.Title className='h-100 w-100 d-flex justify-content-between align-center'>
+            Note from {selectedNeedy.name}
+            <AiOutlineClose className='' style={{ cursor: 'pointer' }} role='button' onClick={closeNoteModal} />
+          </Modal.Title>
+        </Modal.Header>
+        < Modal.Body >
+          <p className='py-4 px-2'>
+            {selectedNeedy.noteForAdmin}
+          </p>
+        </Modal.Body>
+        <Modal.Footer className='m-0 p-0'>
+          <button onClick={() => closeNoteModal()} className='btn btn-danger my-4 mx-3'>
             Close
           </button>
         </Modal.Footer>
