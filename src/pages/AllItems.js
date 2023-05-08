@@ -48,7 +48,7 @@ const AllItems = () => {
       if (selectedFilter === 0) {
         const a =
           itemsBackup.filter(item => {
-            if (item.delivery_status === null) {
+            if (item.request_count > 0 && item.delivery_status === null) {
               return item
             }
           })
@@ -128,7 +128,7 @@ const AllItems = () => {
                             }
                             {item.delivery_status === 1
                               &&
-                              <div className='item-profile-container px-0 mb-4 justify-content-start' style={{marginTop:"10px"}}>
+                              <div className='item-profile-container px-0 mb-4 justify-content-start' style={{ marginTop: "10px" }}>
                                 <div className='item-card-profile mx-0' title={item.needy_name} style={{ backgroundImage: `url(${item.profilePictureSrc ? `${process.env.REACT_APP_BASE_URL}${item.profilePictureSrc}` : 'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'})` }} />
                                 <div className='donor_name'>to {item.needy_name.substring(0, 16)}{item.needy_name.length > 16 && '...'}</div>
                               </div>

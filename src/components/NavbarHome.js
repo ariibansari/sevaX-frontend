@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,6 +11,8 @@ import { UserContext } from '../context/UserProvider';
 function NavbarHome() {
   const [user, setUser] = useContext(UserContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [isNavBgActive, setIsNavBgActive] = useState(false)
 
   let { pathname } = useLocation()
   pathname = pathname.slice(1, pathname.length)
@@ -28,8 +30,18 @@ function NavbarHome() {
     navigate('/login')
   }
 
+  useEffect(()=>{
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 70){
+        setIsNavBgActive(true)
+      }else{
+        setIsNavBgActive(false)
+      }
+    })
+  }, [])
+
   return (
-    <nav className="nav">
+    <nav className={`nav ${isNavBgActive ? 'nav-bg-active' : ''}`}>
       <div className='container'>
         <div className="nav-left">
           <NavLink to="/" className="logo">Seva<span>X</span></NavLink>
@@ -41,11 +53,9 @@ function NavbarHome() {
           {user?.accessToken === ""
             ?
             <>
-              <NavLink to="/about">About</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
               <Dropdown className={`dropdown-link ${(pathname === "register-donor" || pathname === "register-needy") && "active"}`}>
                 <Dropdown.Toggle>
-                  Register
+                  Join
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <NavLink className='dropdown-item' to="/register-donor">for making donation</NavLink>
@@ -53,7 +63,7 @@ function NavbarHome() {
 
                 </Dropdown.Menu>
               </Dropdown>
-              <NavLink to="/login" className='nav-btn'>Login</NavLink>
+              <NavLink to="/login" className='nav-btn nav-btn-highlighted'>Login</NavLink>
             </>
 
             :

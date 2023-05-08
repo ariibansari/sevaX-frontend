@@ -23,12 +23,16 @@ import ItemNeedyView from './pages/ItemNeedyView';
 import AllItemsNeedyView from './pages/AllItemsNeedyView';
 import RequestedItems from './pages/RequestedItems';
 import AcceptedItems from './pages/AcceptedItems';
+import { Footer } from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [user, getRole, isLoggedIn] = useContext(UserContext)
   return (
     <div className="App">
       <Router>
+        <ScrollToTop />
+        <div className='top-wrapper'>
         <NavbarHome />
         <Routes>
 
@@ -100,6 +104,8 @@ function App() {
 
           <Route path='*' element={<PageNotFound />} />
         </Routes>
+        <Footer />
+        </div>
       </Router>
     </div>
   );

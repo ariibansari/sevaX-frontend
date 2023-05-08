@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
 import DonorStats from '../components/DonorStats'
-import ItemsCard from '../components/ItemsCard'
+import LatestRequests from '../components/LatestRequests'
 
 const DashboardDonor = () => {
   const [user, setUser] = useContext(UserContext)
@@ -18,7 +18,7 @@ const DashboardDonor = () => {
         </div>
       </div>
       <DonorStats />
-      <ItemsCard />
+      <LatestRequests />
     </div>
   )
 }

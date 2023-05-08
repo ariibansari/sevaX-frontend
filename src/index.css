@@ -13,10 +13,18 @@
 @import url("./styles/requestedItems.css");
 @import url("./styles/requestList.css");
 @import url("./styles/showDeliveryCodeModal.css");
+@import url("./styles/home.css");
+@import url("./styles/footer.css");
 
 :root {
     box-sizing: border-box;
 }
+
+::selection {
+    color: rgb(0, 85, 67);
+    background: rgba(255, 255, 0, 0.644);
+}
+
 
 body {
     /* font-family: 'Maven Pro', sans-serif !important; */
@@ -26,4 +34,17 @@ body {
     background-color: var(--bg-body) !important;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    padding-top: var(--navbar-ht);
+}
+
+.top-wrapper {
+    min-height: 110dvh;
+    position: relative;
+    padding-bottom: 20rem;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 0 5% !important;
+    }
 }

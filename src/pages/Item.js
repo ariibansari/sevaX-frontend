@@ -62,7 +62,7 @@ const Item = () => {
                                     <p>{item.description}</p>
                                 </div>
                             </div>
-                            <RequestList item_id={item_id} />
+                            <RequestList item_id={item_id} item_name={item.name} />
                         </>
                     }
                 </>

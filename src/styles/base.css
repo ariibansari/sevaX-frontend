@@ -18,6 +18,8 @@
 
     --text-sec: gray;
 
+    --navbar-ht: 6rem;
+
     --clr-status-accepted: #00e065;
     --clr-status-accepted-light: #00e065c2;
     --clr-status-pending: #ffd000;

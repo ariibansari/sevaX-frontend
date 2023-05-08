@@ -6,8 +6,9 @@ import { AiOutlineClose } from 'react-icons/ai'
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { UserContext } from '../context/UserProvider';
+import ConfirmDeliveryModal from './ConfirmDeliveryModal';
 
-const RequestList = ({ item_id }) => {
+const RequestList = ({ item_id, item_name }) => {
     const [user, setUser] = useContext(UserContext)
     const [loading, setLoading] = useState(true)
     const [requests, setRequests] = useState([])
@@ -115,7 +116,10 @@ const RequestList = ({ item_id }) => {
                                         </div>
                                     </div>
                                     <div className='actions'>
-                                        
+                                        {deliveryStatus[0].delivery_status
+                                            ? <button className='button button-success cursor-' style={{ minWidth: "20rem", cursor: "inherit" }}>Delivered on {new Date(deliveryStatus[0].updated_at).toDateString()}</button>
+                                            : <ConfirmDeliveryModal item_id={item_id} item_name={deliveryStatus[0].item_name} needy_name={deliveryStatus[0]?.name} profilePictureSrc={deliveryStatus[0]?.profilePictureSrc} user_id={user.user_id} delivery_id={deliveryStatus[0]?.delivery_id} fetchItems={fetchItemDeliveryStatus} />
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -152,10 +156,18 @@ const RequestList = ({ item_id }) => {
                                                                         <span className='detail'>{request.isHeadOfFamily ? 'Head of Family' : 'Not Head of Family'}</span>
                                                                         {/* <span className='seperator' /> */}
                                                                     </div>
+                                                                    <div className='request-message'>
+                                                                        <p>Note from needy: </p>
+                                                                        {!request.request_message
+                                                                            ? 'no notes'
+                                                                            : request.request_message
+                                                                        }
+                                                                        {/* {request.request_message} */}
+                                                                    </div>
                                                                 </div>
                                                                 <div className='actions'>
                                                                     <div className='edit-btn-container'>
-                                                                        <button className='edit-btn' title='view ration card' value={request.rationCardSrc} onClick={(e) => { setSelectedImgSrc(e.target.value); showImageModal() }}><BsFillImageFill className='edit-icon' /></button>
+                                                                        <button className='edit-btn' title='view documents' value={JSON.stringify(request)} onClick={(e) => { setSelectedNeedy(JSON.parse(e.target.value)); showImageModal() }}><BsFillImageFill className='edit-icon' /></button>
                                                                         <button className='button button-main' value={JSON.stringify(request)} onClick={e => { setSelectedNeedy(JSON.parse(e.target.value)); showSelectNeedyModal() }}>Accept</button>
                                                                     </div>
                                                                 </div>
@@ -267,8 +279,16 @@ const RequestList = ({ item_id }) => {
                     </Modal.Title>
                 </Modal.Header>
                 < Modal.Body >
+                    <p className='px-2 fw-bolder'>Ration Card -</p>
                     <div className='ration-car-img-container'>
-                        <img src={`${process.env.REACT_APP_BASE_URL}${selectedImgSrc}`} className='ration-card-img' />
+                        <img src={`${process.env.REACT_APP_BASE_URL}${selectedNeedy?.rationCardSrc}`} className='ration-card-img' />
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <p className='px-2 fw-bolder'>Aadhar Card -</p>
+                    <div className='ration-car-img-container'>
+                        <img src={`${process.env.REACT_APP_BASE_URL}${selectedNeedy?.aadharCardSrc}`} className='ration-card-img' />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

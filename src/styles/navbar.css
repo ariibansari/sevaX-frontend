@@ -1,12 +1,22 @@
 @import url("./base.css");
 
 .nav {
-  height: 6rem;
+  height: var(--navbar-ht);
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  background-color: var(--bg-nav);
   /* border: solid; */
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 150ms linear;
+  z-index: 100;
+}
+
+.nav.nav-bg-active {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.075) 0px 8px 24px;
 }
 
 .nav .container {
@@ -30,6 +40,23 @@
   justify-content: flex-end;
   align-items: center;
   gap: 1.5rem;
+}
+
+.nav-btn-highlighted {
+  background-color: var(--clr-main);
+  padding: .5rem 2rem;
+  border-radius: 20px;
+  transition: all 150ms linear;
+}
+
+.nav-btn-highlighted:hover {
+  background-color: var(--clr-main-hover);
+  color: #222 !important;
+}
+
+.nav-btn-highlighted.active {
+  color: #222 !important;
+  font-weight: 500;
 }
 
 .logo {

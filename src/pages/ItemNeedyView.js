@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TfiDropboxAlt } from 'react-icons/tfi';
 import { MdKeyboardBackspace, MdDone, MdOutlineDone, MdOutlineCancel } from 'react-icons/md';
-import { BsClockHistory } from 'react-icons/bs';
+import { BsClockHistory, BsFillInfoCircleFill } from 'react-icons/bs';
 import { FcCancel } from 'react-icons/fc';
 import { useNavigate, useParams } from 'react-router-dom'
 import ProtectedAxios from '../api/protectedAxios';
@@ -9,6 +9,10 @@ import { UserContext } from '../context/UserProvider'
 import { RiTruckFill } from 'react-icons/ri'
 import { MdPending } from 'react-icons/md'
 import ShowDeliveryCodeModal from '../components/ShowDeliveryCodeModal';
+import Modal from 'react-bootstrap/Modal';
+import { AiOutlineClose } from 'react-icons/ai'
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 
 const Item = () => {
@@ -20,6 +24,12 @@ const Item = () => {
     const [itemRequestStatus, setItemRequestStatus] = useState([])
     const [applied, setApplied] = useState(false)
     const navigate = useNavigate()
+
+    const [requestMessage, setRequestMessage] = useState('')
+
+    const [confirmRequestModal, setConfirmRequestModal] = useState(false);
+    const closeConfirmRequestModal = () => { setConfirmRequestModal(false) };
+    const showConfirmRequestModal = () => { setConfirmRequestModal(true) };
 
     useEffect(() => {
         fetchItemRequestStatus()
@@ -53,13 +63,15 @@ const Item = () => {
             })
     }
 
-    const requestForItem = () => {
+    const requestForItem = e => {
+        e.preventDefault()
         setLoading(true)
-        ProtectedAxios.post(`/needy/item/addRequest`, { user_id: user.user_id, item_id })
+        ProtectedAxios.post(`/needy/item/addRequest`, { user_id: user.user_id, item_id, request_message: requestMessage })
             .then(res => {
                 if (res.data) {
                     fetchItemRequestStatus()
                     setLoading(false)
+                    closeConfirmRequestModal()
                 }
             })
             .catch(err => {
@@ -105,7 +117,7 @@ const Item = () => {
                                                 type="submit"
                                                 className={`button button-main`}
                                                 disabled={loading}
-                                                onClick={() => requestForItem()}
+                                                onClick={() => showConfirmRequestModal()}
                                             >
                                                 {loading
                                                     ? <div className="spinner-border spinner-border-sm" role="status">
@@ -171,6 +183,59 @@ const Item = () => {
                     }
                 </>
             }
+
+            {/* Confirm Request Modal */}
+            <Modal className='full-width-modal' show={confirmRequestModal} onHide={closeConfirmRequestModal} centered size="md">
+                <Modal.Header >
+                    <Modal.Title className='h-100 w-100 d-flex justify-content-between align-center'>
+                        Confirm Request
+                        <AiOutlineClose className='' style={{ cursor: 'pointer' }} role='button' onClick={closeConfirmRequestModal} />
+                    </Modal.Title>
+                </Modal.Header>
+                <form onSubmit={requestForItem}>
+                    < Modal.Body >
+                        <div className='input-grp my-4 px-2'>
+                            <label htmlFor="address-textarea">
+                                Note for donor
+                                <OverlayTrigger
+                                    delay={{ hide: 450, show: 300 }}
+                                    overlay={(props) => (
+                                        <Tooltip {...props}>
+                                            anything that the donor should know that would help them choose you for the donation
+                                        </Tooltip>
+                                    )}
+                                    placement="right"
+                                >
+                                    <button type="button" className='tooltip-button'><BsFillInfoCircleFill /></button>
+                                </OverlayTrigger>
+                            </label>
+                            <textarea id="address-textarea"
+                                placeholder='leave blank if N/A'
+                                value={requestMessage} onChange={e => setRequestMessage(e.target.value)} />
+                        </div>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button type='button' onClick={() => closeConfirmRequestModal()} className='button button-danger my-4 mx-3'>
+                            Close
+                        </button>
+                        <button type='submit' className='button my-4 mx-3' disabled={loading}>
+                            {loading
+                                ?
+                                <>
+                                    Send request
+                                    <div className="mx-2 spinner-border spinner-border-sm" role="status">
+                                        <span className="sr-only"></span>
+                                    </div>
+                                </>
+
+                                :
+                                "Send request"
+                            }
+                        </button>
+                    </Modal.Footer>
+                </form>
+            </Modal >
         </div>
     )
 }

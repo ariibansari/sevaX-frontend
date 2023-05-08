@@ -14,6 +14,7 @@
     /* border: 1px solid rgb(226, 226, 226); */
     /* background-color: rgba(235, 235, 235, 0.199); */
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    padding: 2rem 1rem;
 }
 
 .request .profile-picture-container {
@@ -21,7 +22,7 @@
     min-width: 10rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .request .profile-picture {
@@ -69,22 +70,36 @@
     margin: 0 10px;
 }
 
-.actions{
+.actions {
     width: 25%;
     min-width: 11rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+    height: 100%;
 }
+
 .actions .edit-btn {
     width: 4rem;
     height: 4rem;
 }
-.actions .edit-btn svg{
+
+.actions .edit-btn svg {
     font-size: 1.3rem;
 }
 
-
+.request-message {
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 1rem;
+    color: rgb(59, 59, 59);
+}
+.request-message p{
+    margin: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
 
 @media screen and (max-width: 425px) {}

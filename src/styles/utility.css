@@ -154,11 +154,19 @@ section {
 
 .button-sec {
     background-color: #222 !important;
-    color: white;
+    color: white !important;
     cursor: not-allowed;
 }
 .button-sec:hover {
     background-color: #333333 !important;
+    color: white;
+}
+.button-danger {
+    background-color: #e60a0a !important;
+    color: white !important;
+}
+.button-danger:hover {
+    background-color: #f70a0a !important;
     color: white;
 }
 .button-ghost {
@@ -191,7 +199,7 @@ section {
 }
 
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 500px){
     .heading-container{
         flex-direction: column;
         justify-content: flex-start;
