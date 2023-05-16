@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: SFTP uploader
-        uses: wangyucode/sftp-upload-action@v1.4.8
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           port: 21
-          host: '217.21.95.247'
+          host: 'ftp://217.21.95.247'
           username: 'u641483924.u641483924'
           password: 'Arib@123'
           remoteDir: './sevax'
