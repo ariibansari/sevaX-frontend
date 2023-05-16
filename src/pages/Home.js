@@ -97,7 +97,7 @@ const Home = () => {
             </NavLink>
 
             <h1>
-              Let's become
+              Let us become
               <br />
               part of <span>something
                 <br />

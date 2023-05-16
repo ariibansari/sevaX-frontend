@@ -30,7 +30,7 @@ function App() {
   const [user, getRole, isLoggedIn] = useContext(UserContext)
   return (
     <div className="App">
-      <Router>
+      <Router basename='/'>
         <ScrollToTop />
         <div className='top-wrapper'>
         <NavbarHome />
