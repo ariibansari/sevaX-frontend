@@ -18,9 +18,9 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           port: 21
-          server: 'ftp://217.21.95.247'
-          username: 'u641483924.u641483924'
-          password: 'Arib@123'
-          server-dir: './sevax/'
-          local-dir: './build/'
+          server: ftp://217.21.95.247
+          username: u641483924.u641483924
+          password: Arib@123
+          server-dir: ./sevax/
+          local-dir: ./build/
           dry-run: false
