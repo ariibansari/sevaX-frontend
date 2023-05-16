@@ -1,26 +1,40 @@
-name: 🚀 Deploy React app
-
+name: Build and deploy
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    name: 🛠 Build and Deploy
+  build:
+    name: Build ⛏
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: SFTP uploader
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Checkout repository
+        uses: actions/checkout@main
+      - name: Install dependencies
+        run: npm ci
+      - name: Build dependencies
+        run: npm run build
+      - name: Archive production artifact
+        uses: actions/upload-artifact@main
         with:
-          port: 21
+          name: dist
+          path: dist
+  deploy:
+    name: Deploy 🚀
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@main
+      - name: Download artifact
+        uses: actions/download-artifact@main
+        with: 
+          name: dist
+          path: dist
+      - name: Sync files to hosting
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with: 
           server: ftp.ansariarib.com
-          username: u641483924.u641483924
+          username: u641483924.sevax
           password: Arib@123
-          server-dir: ./sevax/
-          local-dir: ./build/
-          dry-run: false
