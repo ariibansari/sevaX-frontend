@@ -18,7 +18,7 @@ jobs:
         uses: wangyucode/sftp-upload-action@v1.4.8
         with:
           port: 21
-          host: 'ftp://217.21.95.247'
+          host: '217.21.95.247'
           username: 'u641483924.u641483924'
           password: 'Arib@123'
           remoteDir: './sevax'
