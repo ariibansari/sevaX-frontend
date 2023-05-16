@@ -29,9 +29,9 @@ jobs:
         uses: wangyucode/sftp-upload-action@v1.4.8
         with:
           port: 21
-          host: ansariarib.com
-          username: u641483924
-          password: Arib@123
-          remoteDir: public_html/sevax
-          localDir: ./build
+          host: 'ftp.ansariarib.com'
+          username: 'u641483924.u641483924'
+          password: 'Arib@123'
+          remoteDir: './sevax'
+          localDir: './build'
           dryRun: false
