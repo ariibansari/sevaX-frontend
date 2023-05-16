@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+name: 🚀 Generate a build and push to another branch
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
+    name: Build 🛠️ and Push 📌
     steps:
       - name: git-checkout
         uses: actions/checkout@v2
@@ -19,11 +19,25 @@ jobs:
       - name: Build
         run: npm run build # The build command of your project
 
-      - name: Push
+      - name: Delete files in deployment branch
+        run: |
+          git branch -D deployment # Delete the deployment branch if it exists
+          git checkout -b deployment # Create a new deployment branch
+
+          # Delete all files in the deployment branch
+          git ls-files | xargs git rm --cached
+
+          # Commit the deletion
+          git commit -m "Delete files in deployment branch" || true
+
+          # Push the deletion to the remote deployment branch
+          git push -f origin deployment
+
+      - name: Push build files to deployment branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: build # The branch name where you want to push the assets
+          BRANCH: deployment # The deployment branch name
           FOLDER: build # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
