@@ -21,8 +21,7 @@ jobs:
 
       - name: Delete files in deployment branch
         run: |
-          git branch -D deployment # Delete the deployment branch if it exists
-          git checkout -b deployment # Create a new deployment branch
+          git checkout deployment # Create a new deployment branch
 
           # Delete all files in the deployment branch
           git ls-files | xargs git rm --cached
