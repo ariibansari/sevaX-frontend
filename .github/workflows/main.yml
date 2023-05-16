@@ -21,6 +21,6 @@ jobs:
           host: 'ftp://217.21.95.247'
           username: 'u641483924.u641483924'
           password: 'Arib@123'
-          remoteDir: './sevax'
-          localDir: './build'
-          dryRun: false
+          server-dir: './sevax'
+          local-dir: './build'
+          dry-run: false
