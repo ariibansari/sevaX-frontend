@@ -18,7 +18,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           port: 21
-          server: ftp://217.21.95.247/
+          server: ftp.ansariarib.com
           username: u641483924.u641483924
           password: Arib@123
           server-dir: ./sevax/
