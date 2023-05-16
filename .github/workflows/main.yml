@@ -14,17 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm i
-
-      - name: Build React app
-        run: npm run build
-
       - name: SFTP uploader
         uses: wangyucode/sftp-upload-action@v1.4.8
         with:
