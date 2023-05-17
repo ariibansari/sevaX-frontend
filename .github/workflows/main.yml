@@ -28,7 +28,7 @@ jobs:
           git config --global user.name "Arib Ansari"
           git add .
           git commit -m "Commit build changes"
-          git push  
+          git push https://${{ secrets.PAT_TOKEN }}@github.com/ariibansari/sevaX-frontend.git  
 
       - name: Set up Git FTP
         run: |
