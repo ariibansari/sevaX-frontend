@@ -2,7 +2,7 @@ name: Git Push Action
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
