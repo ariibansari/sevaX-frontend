@@ -30,7 +30,7 @@ jobs:
           git remote set-url origin https://github.com/ariibansari/sevaX-frontend.git
           git add .
           git commit -m "Commit build changes"
-          git push origin master --quiet --set-upstream --follow-tags --no-verify -u ${{ secrets.PAT_TOKEN }}  
+          git push https://${{ secrets.PAT_TOKEN }}@github.com/ariibansari/sevaX-frontend.git
 
       - name: Set up Git FTP
         run: |
