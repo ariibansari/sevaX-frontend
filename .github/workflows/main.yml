@@ -13,11 +13,12 @@ jobs:
 
       - name: Set up Git FTP
         run: |
-          apt-get -y install git-ftp
+          sudo apt-get -y install git-ftp
           git config git-ftp.syncroot build/
           git config git-ftp.user u641483924.sevax
           git config git-ftp.url ftp://217.21.95.247
           git config git-ftp.password Arib@123
+
 
       - name: Push to FTP
         run: |
