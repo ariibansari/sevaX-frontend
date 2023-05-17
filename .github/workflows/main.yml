@@ -1,9 +1,8 @@
-name: Deploy to Shared Hosting
-
+name: Git Push Action
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -12,11 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Deploy to Shared Hosting
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          ftp-server: ftp://217.21.95.247
-          ftp-username: u641483924.sevax
-          ftp-password: Arib@123
-          local-dir: build/
-          remote-dir: /
+      - name: Set up Git FTP
+        run: |
+          apt-get -y install git-ftp
+          git config git-ftp.syncroot build/
+          git config git-ftp.user u641483924.sevax
+          git config git-ftp.url ftp://217.21.95.247
+          git config git-ftp.password Arib@123
+
+      - name: Push to FTP
+        run: |
+          git ftp push --force --auto-init --verbose
