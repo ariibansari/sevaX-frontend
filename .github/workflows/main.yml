@@ -1,4 +1,4 @@
-name: Deploy to Deployment Branch
+name: Generate a build and push to another branch
 
 on:
   push:
@@ -6,35 +6,24 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    name: Deploy to Deployment Branch
+    name: Build and Push
     steps:
-      - name: Checkout repository
+      - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: Check if deployment branch exists
-        run: |
-          if git rev-parse --verify deployment >/dev/null 2>&1; then
-            echo "Deployment branch exists."
-          else
-            echo "Deployment branch does not exist. Creating..."
-            git checkout -b deployment
-            git push origin deployment
-          fi
+      - name: Install all dependencies
+        run: npm install
 
-      - name: Delete all files in deployment branch
-        run: |
-          git checkout deployment
-          git rm -rf .
-          git commit -m "Delete all files"
-          git push origin deployment
+      - name: Build
+        run: npm run build # The build command of your project
 
-      - name: Copy build folder to deployment branch
-        run: |
-          git checkout master -- build/
-          git checkout deployment
-          mv build/* .
-          git add .
-          git commit -m "Copy build folder to deployment branch"
-          git push origin deployment
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: deployment # The branch name where you want to push the assets
+          FOLDER: build # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
