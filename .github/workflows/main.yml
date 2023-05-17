@@ -24,6 +24,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          git config --global user.email "ariibansari@gmail.com"
           git add .
           git commit -m "Commit build changes"
           git push  
