@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+name: Deploy to Deployment Branch
 
 on:
   push:
@@ -6,24 +6,35 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    name: Build and Push
+    name: Deploy to Deployment Branch
     steps:
-      - name: git-checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        uses: npm install
-
-      - name: Build
-        uses: npm run build
-
-      - name: Copy build folder to deploy branch
+      - name: Check if deployment branch exists
         run: |
-          git config --global user.name "Arib Ansari"
-          git config --global user.email "ariibansari@gmail.com"
-          git checkout -b deployment
-          git add -f build/
-          git commit -m "Deploy build folder"
-          git push origin deploy
+          if git rev-parse --verify deployment >/dev/null 2>&1; then
+            echo "Deployment branch exists."
+          else
+            echo "Deployment branch does not exist. Creating..."
+            git checkout -b deployment
+            git push origin deployment
+          fi
+
+      - name: Delete all files in deployment branch
+        run: |
+          git checkout deployment
+          git rm -rf .
+          git commit -m "Delete all files"
+          git push origin deployment
+
+      - name: Copy build folder to deployment branch
+        run: |
+          git checkout master -- build/
+          git checkout deployment
+          mv build/* .
+          git add .
+          git commit -m "Copy build folder to deployment branch"
+          git push origin deployment
