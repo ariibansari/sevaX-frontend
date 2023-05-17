@@ -17,9 +17,45 @@ jobs:
           node-version: 18
 
       - name: Push to deployment branch
-        uses: elstudio/actions-git-push@master
+        uses: actions/github-script@v5
         with:
-          branch: deployment
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
-          directory: build
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const buildPath = path.join(process.cwd(), 'build');
+            const deploymentBranch = 'deployment';
+
+            async function run() {
+              try {
+                await checkoutBranch();
+                await copyBuildFiles();
+                await commitAndPush();
+              } catch (error) {
+                core.setFailed(error.message);
+              }
+            }
+
+            async function checkoutBranch() {
+              await exec('git', ['checkout', deploymentBranch]);
+            }
+
+            async function copyBuildFiles() {
+              await exec('cp', ['-R', buildPath + '/.', '.']);
+            }
+
+            async function commitAndPush() {
+              await exec('git', ['config', 'user.name', 'GitHub Actions']);
+              await exec('git', ['config', 'user.email', 'actions@github.com']);
+              await exec('git', ['add', '.']);
+              await exec('git', ['commit', '-m', 'Deploy build']);
+              await exec('git', ['push']);
+            }
+
+            async function exec(command, args) {
+              const { stdout, stderr } = await require('child_process').execFile(command, args);
+              if (stdout) console.log(stdout);
+              if (stderr) throw new Error(stderr);
+            }
+
+            run();
