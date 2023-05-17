@@ -16,30 +16,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
 
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
 
-      - name: Commit changes
-        run: |
-          git config --global user.email "ariibansari@gmail.com"
-          git config --global user.name "Arib Ansari"
-          git config --global credential.helper store
-          git remote set-url origin https://github.com/ariibansari/sevaX-frontend.git
-          git add .
-          git commit -m "Commit build changes"
-          git push https://${{ secrets.PAT_TOKEN }}@github.com/ariibansari/sevaX-frontend.git
-
-      - name: Set up Git FTP
-        run: |
-          sudo apt-get -y install git-ftp
-          git config git-ftp.syncroot build/
-          git config git-ftp.user ${{ secrets.FTP_USERNAME }}
-          git config git-ftp.url ${{ secrets.FTP_SERVER }}
-          git config git-ftp.password ${{ secrets.FTP_PASSWORD }}
-
-      - name: Push to FTP
-        run: |
-          git ftp push --force --auto-init --verbose
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build/
+          server-dir: ./
