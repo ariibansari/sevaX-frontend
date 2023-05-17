@@ -97,11 +97,11 @@ const Home = () => {
             </NavLink>
 
             <h1>
-              Let us all become
+              Let's become
               <br />
               part of <span>something
                 <br />
-                very big.
+                bigger.
               </span>
             </h1>
 

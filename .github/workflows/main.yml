@@ -1,3 +1,9 @@
+# Important Note
+# Goto Repo Settings => Actions => General
+# Scroll down to 'Workflow permissions'
+# Make sure that Read and write permission is checked
+# Follow this tutorial for Shared hosting workflow - https://dev.to/mwoodson11/create-deployment-pipeline-for-react-app-on-hostinger-5bc9
+
 name: Generate a build and push to another branch
 
 on:
