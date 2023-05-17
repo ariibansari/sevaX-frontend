@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -26,9 +26,9 @@ jobs:
         run: |
           sudo apt-get -y install git-ftp
           git config git-ftp.syncroot build/
-          git config git-ftp.user u641483924.sevax
-          git config git-ftp.url ftp://217.21.95.247
-          git config git-ftp.password Arib@123
+          git config git-ftp.user ${{ secrets.FTP_USERNAME }}
+          git config git-ftp.url ${{ secrets.FTP_SERVER }}
+          git config git-ftp.password ${{ secrets.FTP_PASSWORD }}
 
       - name: Push to FTP
         run: |
