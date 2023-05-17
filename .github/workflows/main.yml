@@ -22,6 +22,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Commit build changes"
+          git push  
+
       - name: Set up Git FTP
         run: |
           sudo apt-get -y install git-ftp
@@ -32,4 +38,4 @@ jobs:
 
       - name: Push to FTP
         run: |
-          git ftp push --force --auto-init --verbose --insecure
+          git ftp push --force --auto-init --verbose
