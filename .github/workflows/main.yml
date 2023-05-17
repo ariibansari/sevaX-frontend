@@ -13,11 +13,11 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: Install all dependencies
-        run: npm install
-        
-      - name: Build
-        run: npm run build # The build command of your project
-        
-      - name: Copy build folder in deploy branch
-        run: git subtree split --branch deploy --prefix build/
+      - name: Copy build folder to deploy branch
+        run: |
+          git config --global user.name "Arib Ansari"
+          git config --global user.email "ariibansari@gmail.com"
+          git checkout -b deployment
+          git add -f build/
+          git commit -m "Deploy build folder"
+          git push origin deploy
