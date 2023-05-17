@@ -1,61 +1,21 @@
-name: Git Push Action
 on:
   push:
     branches:
       - master
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          node-version: 18
-
-      - name: Push to deployment branch
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-
-            const buildPath = path.join(process.cwd(), 'build');
-            const deploymentBranch = 'deployment';
-
-            async function run() {
-              try {
-                await checkoutBranch();
-                await copyBuildFiles();
-                await commitAndPush();
-              } catch (error) {
-                core.setFailed(error.message);
-              }
-            }
-
-            async function checkoutBranch() {
-              await exec('git', ['checkout', deploymentBranch]);
-            }
-
-            async function copyBuildFiles() {
-              await exec('cp', ['-R', buildPath + '/.', '.']);
-            }
-
-            async function commitAndPush() {
-              await exec('git', ['config', 'user.name', 'GitHub Actions']);
-              await exec('git', ['config', 'user.email', 'actions@github.com']);
-              await exec('git', ['add', '.']);
-              await exec('git', ['commit', '-m', 'Deploy build']);
-              await exec('git', ['push']);
-            }
-
-            async function exec(command, args) {
-              const { stdout, stderr } = await require('child_process').execFile(command, args);
-              if (stdout) console.log(stdout);
-              if (stderr) throw new Error(stderr);
-            }
-
-            run();
+          server: ftp://217.21.95.247
+          username: u641483924.sevax
+          password: Arib@123
+          local-dir: build/
