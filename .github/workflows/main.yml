@@ -32,4 +32,4 @@ jobs:
 
       - name: Push to FTP
         run: |
-          git ftp push --force --auto-init --verbose
+          git ftp push --force --auto-init --verbose --insecure
